@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Negasi-Kifle/yaya-webhook.git"
+    "url": "https://github.com/Negasi-Kifle/yaya-webhook.git"
   },
   "author": "Negasi Kiflom",
   "license": "ISC",

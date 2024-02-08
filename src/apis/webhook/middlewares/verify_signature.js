@@ -15,8 +15,11 @@ module.exports = (req, res, next) => {
     // Secret key
     const expectedSecretKey = configs.secret_key;
 
-    // Time window for valid timestamps in milliseconds
-    const timestampWindow = 5 * 60 * 1000; // 5 minutes
+    // Check secret key
+    const receivedSecretKey = req.headers["secret-key"];
+    if (receivedSecretKey !== expectedSecretKey) {
+      return next(new AppError("Invalid secret key", 400));
+    }
 
     // Extract signature and timestamp from the "YAYA-SINGATURE" header
     const signatureParts = req.headers["yaya-signature"].split(",");
@@ -24,6 +27,9 @@ module.exports = (req, res, next) => {
     const receivedTimestamp = parseInt(signatureParts[1]);
 
     synchronizeTime(); // Synchronize my server's time with Yaya's server
+
+    // Time window for valid timestamps in milliseconds
+    const timestampWindow = 5 * 60 * 1000; // 5 minutes
 
     // Check if the timestamp is within the valid time window
     const currentTimestamp = Date.now();
@@ -43,12 +49,6 @@ module.exports = (req, res, next) => {
     // Check signature
     if (receivedSignature !== expectedSignature) {
       return next(new AppError("Signature invalid", 404));
-    }
-
-    // Check secret key
-    const receivedSecretKey = req.headers["secret-key"];
-    if (receivedSecretKey !== expectedSecretKey) {
-      return next(new AppError("Invalid secret key", 400));
     }
 
     // Go to next middleware

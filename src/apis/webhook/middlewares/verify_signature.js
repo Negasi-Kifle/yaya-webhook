@@ -27,7 +27,6 @@ module.exports = (req, res, next) => {
 
     // Check if the timestamp is within the valid time window
     const currentTimestamp = Date.now();
-
     if (currentTimestamp - receivedTimestamp > timestampWindow) {
       return next(new AppError("Signature invalid", 400));
     }
@@ -40,9 +39,10 @@ module.exports = (req, res, next) => {
       .createHmac("sha256", expectedSecretKey)
       .update(signedPayload)
       .digest("hex");
-    console.log(expectedSignature);
+
+    // Check signature
     if (receivedSignature !== expectedSignature) {
-      return next(new AppError("Signature invalid ", 404));
+      return next(new AppError("Signature invalid", 404));
     }
 
     // Check secret key

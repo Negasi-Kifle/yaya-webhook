@@ -2,7 +2,10 @@ const ntpClient = require("ntp-client");
 
 // Function to synchronize server's clock with Yaya's server
 function synchronizeTime() {
-  const yayaServer = "104.21.8.141";
+  // Yaya's server IP/DNS
+  const yayaServer = "pool.ntp.org";
+
+  // Synchronise time
   ntpClient.getNetworkTime(yayaServer, 123, function (err, date) {
     if (err) {
       console.error("Error synchronizing time:", err);

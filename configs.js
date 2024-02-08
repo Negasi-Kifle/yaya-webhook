@@ -7,7 +7,7 @@ require("dotenv").config();
 module.exports = {
   env: process.env.NODE_ENV,
   db: {
-    remote: process.env.REMOTE_DB,
+    local: process.env.LOCAL_DB,
   },
   secret_key: process.env.SECRET_KEY,
   valid_ip_address: process.env.VALID_IP_ADDRESSES,

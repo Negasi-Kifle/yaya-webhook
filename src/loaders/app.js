@@ -4,6 +4,7 @@ const AppError = require("../utils/appError");
 const app = express();
 
 // Import router files
+const webhookRouter = require("../apis/webhook/router");
 
 // Import third party middleware
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/test", (req, res) => {
   res.send("Hello world");
 });
+app.use("/api/v1/webhook", webhookRouter);
 
 // An unknown url
 app.use("*", (req, res, next) => {

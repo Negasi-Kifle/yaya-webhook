@@ -9,9 +9,6 @@ module.exports = {
   db: {
     remote: process.env.REMOTE_DB,
   },
-  port: process.env.PORT,
-  jwt: {
-    secret: process.env.JWT_SECRET,
-    expires_in: process.env.JWT_EXPIRES_IN,
-  },
+  secret_key: process.env.SECRET_KEY,
+  valid_ip_address: process.env.VALID_IP_ADDRESSES,
 };

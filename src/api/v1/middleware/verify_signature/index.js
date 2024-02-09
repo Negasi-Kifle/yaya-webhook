@@ -36,7 +36,7 @@ module.exports = (req, res, next) => {
       return next(new AppError("Signature invalid", 400));
     }
 
-    // Concatenate all payload values into a single string and encode it to UTF-8 format
+    // Concatenate all payload values into a single string
     const signedPayload = Object.values(req.body).join("");
 
     // Generate the expected HMAC SHA256 signature based on the signed payload and the secret key

@@ -4,7 +4,7 @@ This project veryfies a webhook event triggered by Yaya-wallet. The proces of ve
 2. Verify the YAYA-SIGNATURE header that's sent by Yaya server
     2.1. Check Yaya sent a valid secret key
     2.2. Extract signature and timestamp from "YAYA-SIGNATURE"
-    2.3.3 Syncronize my server's time with the time on Yaya's server and check/validate timestamp is not older than 5 minutes
+    2.3.3 Syncronize my server's time with the time on Yaya's server and check/validate timestamp is not older than 5 minutes. But since I could not get the exacr IP address of Yaya server, I used "pool.ntp.org" temporarily. 
     2.3. Prepare the signed payload
     2.4. Prepare the signature by hashing the signed payload with the secret key
     2.5. Validate the signature extracted from "YAYA-SIGNATURE" against the valid signature
